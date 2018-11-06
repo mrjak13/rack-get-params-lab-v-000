@@ -19,6 +19,12 @@ class Application
       @@cart.each do |content|
         resp.write "#{content}\n"
       end
+    elsif req.path.match(/add/)
+      add_term = req.params["item"]
+      if @@items.include?(add_term)
+        @@cart << add_term
+      else
+        resp.write "Item Not Found"           
     else
       resp.write "Path Not Found"
     end
